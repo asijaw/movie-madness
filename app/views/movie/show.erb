@@ -1,0 +1,9 @@
+<h2>Title: <%= @movie.name %></h2><br>
+Year:  <%= @movie.year %><br>
+Category:  <%= @movie.category %><br>
+Rating: <%= @movie.rating %><br>
+
+<form method="post" action="/movie/<%= @movie.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete">
+</form>

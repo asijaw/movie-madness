@@ -1,0 +1,21 @@
+h1>Edit Your Movie Below</h1>
+
+<form method="Post" action="/movie/<%= @movie.id %>">
+
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
+    <p><label for "title">Title:</label>
+    <input type="text" value="<%= @movie.name %>" name="title"></p>
+
+    <p><label for "year">Year:</label>
+    <input type="number" value="<%= @movie.year %>" name="year"></p>
+
+    <p><label for "category">Category:</label>
+    <input type="text" value="<%= @movie.category %>" name="category"></p>
+
+    <p><label for "rating">Rating 1-5:</label>
+    <input type="number" value="<%= @movie.rating %>" name="rating"></p>
+
+    <input type="submit" value="Submit">
+
+</form>
