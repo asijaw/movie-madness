@@ -1,1 +1,9 @@
-"this is your account"
+<h1>Welcome, <%= @user.name %></h1>
+
+<h3>Your Favorite Movies:</h3>
+<% @user.movies.each do |m| %>
+    <p>Title: <%= m.name %><br>
+    Year: <%= m.year %><br>
+    Category: <%= m.category %><br>
+    Rating: <%= m.rating %><br></p>
+<% end %>

@@ -3,8 +3,12 @@ class MovieController < ApplicationController
     #create
 
     get '/movie/new' do
-        
-        erb :'movie/new'
+        if logged_in?
+            erb :'movie/new'
+        else 
+            flash[:alert] = "Please login to add a new movie"
+            redirect "/user/login"
+        end
     end 
 
     post '/movie/add' do
@@ -14,6 +18,8 @@ class MovieController < ApplicationController
             category: params[:category],
             rating: params[:rating]
         )
+        @user = current_user
+        @user.movies << @movie
         redirect "/movie/#{@movie.id}"
     end 
 

@@ -1,3 +1,9 @@
+<div class="flash_alert">
+  <% if flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %>
+</div>
+
 <h1>Signup to Track Your Movie Madness!</h1><br>
 <form method="Post" action="/user/signup">
     <p><label for "username">Username:</label>

@@ -1,8 +1,8 @@
 <h1>The Movie Madness</h1>
-<% Movie.all.each do |m| %>
+<% @movies.each do |m| %>
     <p><h3>Title: <%= m.name %></h3><br>
     Year: <%= m.year %><br>
     Category: <%= m.category %><br>
     Rating: <%= m.rating %><br>
-    User: <% %><br></p>
+    User: <%= m.user.name %><br></p>
 <% end %>

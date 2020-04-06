@@ -44,7 +44,7 @@ class UserController < ApplicationController
       end
 
       get '/user/:id' do
-        @user = User.find_by(params[:id])
+        @user = User.find(params[:id])
         erb :'/user/account'
       end 
 
