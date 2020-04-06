@@ -11,9 +11,24 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+   <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+  <div class="navbar">
+  
+      <% if logged_in?%>
+        <a href="/logout"> Logout </a>
+      <% end %>
+
+      <a href="/movies"> View Movies </a>
+
+      <a href="/movie/new"> Create New Movie</a>
+
+      <a href="/">Home</a>
+
+    </div>
+
     <div class="wrapper">
 
         <%= yield %>
@@ -30,3 +45,31 @@
     <![endif]-->
   </body>
 </html>
+
+<style>
+.navbar {
+  background-color: #a5abad;
+  overflow: hidden;
+  margin: 0;
+}
+
+.navbar a {
+  float: right;
+  color: #000000;
+  /* text-align: center; */
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>

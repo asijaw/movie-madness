@@ -37,7 +37,7 @@ class UserController < ApplicationController
             flash[:alert] = "Username is taken, please login or choose another username"
             redirect "/user/signup"
         else
-            @user = User.create(name: params[:username], password: params[:password])
+            @user = User.create(name: params[:username].downcase, password: params[:password].downcase)
             session[:user_id] = @user.id 
             redirect "/user/#{@user.id}"
         end 
