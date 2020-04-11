@@ -1,0 +1,18 @@
+<h1>Which movie would you like to edit?</h1>
+
+<% @movie.each.with_index(1) do |m, i| %>
+    <p><h3><%= i %>. Title: <%= m.name %></h3><br>
+    Year: <%= m.year %><br>
+    Category: <%= m.category %><br>
+    Rating: <%= m.rating %><br>
+    User: <%= m.user.name %><br></p>
+<% end %>
+
+<form method="Post" action="/movie/num">
+    <p><label for "movie_num">Movie:</label>
+        <input type ="number" min="1" max="#{@movie.count}" name="movie_num"></p>
+    <input type="submit" value="Submit">
+
+</form>
+
+        

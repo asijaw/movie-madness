@@ -59,7 +59,7 @@ class MovieController < ApplicationController
         end 
     end
 
-    post '/movie/:id' do
+    patch '/movie/:id' do
         @movie = Movie.find(params[:id])
         @movie.update(
             name: params[:title], 
@@ -69,6 +69,23 @@ class MovieController < ApplicationController
         )
         redirect "/movie/#{@movie.id}"
     end
+
+    get '/edit' do
+        if !logged_in?
+            flash[:alert] = "Please login to edit movies"
+            redirect "/user/login"
+        else
+            @movie = current_user.movies
+            erb :'movie/numbered'
+        end 
+    end 
+
+    post '/movie/num' do 
+        num = params[:movie_num].to_i - 1
+        @movie = current_user.movies[num]
+        redirect "/movie/#{@movie.id}/edit"
+    end 
+
     #delete
 
     delete '/movie/:id' do
