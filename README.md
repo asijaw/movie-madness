@@ -6,9 +6,9 @@ This is a web application that allows the user to store their favorite movies an
 
 Fork and Clone this repo
 
-'cd' into the project folder
+`cd` into the project folder
 
-Run 'bundle install' then 'shotgun' in your terminal
+Run `bundle install` then `shotgun` in your terminal
 
 Follow the local address link given in your terminal
 
