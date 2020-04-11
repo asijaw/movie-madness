@@ -1,4 +1,4 @@
-h1>Edit Your Movie Below</h1>
+<h1>Edit Your Movie Below</h1>
 
 <form method="Post" action="/movie/<%= @movie.id %>">
 
@@ -14,7 +14,7 @@ h1>Edit Your Movie Below</h1>
     <input type="text" value="<%= @movie.category %>" name="category"></p>
 
     <p><label for "rating">Rating 1-5:</label>
-    <input type="number" value="<%= @movie.rating %>" name="rating"></p>
+    <input type="number" placeholder="1.0" step="0.1" min="1" max="5" value="<%= @movie.rating %>" name="rating"></p>
 
     <input type="submit" value="Submit">
 

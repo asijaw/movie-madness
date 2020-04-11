@@ -39,7 +39,7 @@ class UserController < ApplicationController
         else
             @user = User.create(name: params[:username].downcase, password: params[:password].downcase)
             session[:user_id] = @user.id 
-            redirect "/user/#{@user.id}"
+            redirect "/movie/new"
         end 
       end
 

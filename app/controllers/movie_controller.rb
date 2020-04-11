@@ -26,21 +26,34 @@ class MovieController < ApplicationController
     #read
     
     get '/movie/:id' do
-        @movie = Movie.find(params[:id])
-        erb :'/movie/show'
+        if logged_in?
+            @movie = Movie.find(params[:id])
+            erb :'/movie/show'
+        else
+            flash[:alert] = "Please login to see movies"
+            redirect "/user/login"
+        end
     end 
 
     get '/movies' do
-        @movies = Movie.all
-        erb :'/movie/index'
+        if logged_in?
+            @movies = Movie.all
+            erb :'/movie/index'
+        else 
+            flash[:alert] = "Please login to see movies"
+            redirect "/user/login"
+        end
     end 
     
     #update
 
     get '/movie/:id/edit' do
         @movie = Movie.find(params[:id])
-        if @movie.user != current_user
-            redirect '/login'
+        if !logged_in?
+            flash[:alert] = "Please login to edit movies"
+            redirect "/user/login"
+        elsif @movie.user != current_user
+            redirect '/user/login'
         else
             erb :'/movie/edit'
         end 
@@ -60,8 +73,11 @@ class MovieController < ApplicationController
 
     delete '/movie/:id' do
         @movie = Movie.find(params[:id])
-        if @movie.user != current_user
-            redirect '/login'
+        if !logged_in?
+            flash[:alert] = "Please login to delete movies"
+            redirect "/user/login"
+        elsif @movie.user != current_user
+            redirect '/user/login'
         else
             @movie.delete
             redirect '/movies'
