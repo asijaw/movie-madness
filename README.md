@@ -2,11 +2,14 @@
 
 This is a web application that allows the user to store their favorite movies and see a list of all users' favorite movies in order by ranking. It is built with Sinatra, Ruby, ActiveRecord, etc.
 
-<h2>To run this app:</h2>
+<h2>To run this app</h2>
 
 Fork and Clone this repo
-<mark>cd</mark> into the project folder
-Run <mark>bundle install</mark> then <mark>shotgun</mark> in your terminal
+
+'cd' into the project folder
+
+Run 'bundle install' then 'shotgun' in your terminal
+
 Follow the local address link given in your terminal
 
 <h2>License</h2>
