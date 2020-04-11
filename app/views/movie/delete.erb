@@ -1,0 +1,13 @@
+<h1>Please choose a movie to delete</h1>
+<% @movie.each do |m| %>
+    <p><h3>Title: <%= m.name %></h3><br>
+    Year: <%= m.year %><br>
+    Category: <%= m.category %><br>
+    Rating: <%= m.rating %><br>
+    User: <%= m.user.name %><br></p>
+
+    <form method="post" action="/movie/<%= m.id %>">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+    </form>
+<% end %>

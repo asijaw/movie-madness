@@ -88,6 +88,16 @@ class MovieController < ApplicationController
 
     #delete
 
+    get '/delete' do
+        if !logged_in?
+            flash[:alert] = "Please login to delete movies"
+            redirect "/user/login"
+        else
+            @movie = current_user.movies
+            erb :'movie/delete'
+        end 
+    end
+
     delete '/movie/:id' do
         @movie = Movie.find(params[:id])
         if !logged_in?
@@ -97,7 +107,7 @@ class MovieController < ApplicationController
             redirect '/user/login'
         else
             @movie.delete
-            redirect '/movies'
+            redirect "/user/#{current_user.id}"
         end 
     end 
 
