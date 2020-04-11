@@ -39,7 +39,11 @@ class MovieController < ApplicationController
 
     get '/movie/:id/edit' do
         @movie = Movie.find(params[:id])
-        erb :'/movie/edit'
+        if @movie.user != current_user
+            redirect '/login'
+        else
+            erb :'/movie/edit'
+        end 
     end
 
     post '/movie/:id' do
@@ -56,8 +60,12 @@ class MovieController < ApplicationController
 
     delete '/movie/:id' do
         @movie = Movie.find(params[:id])
-        @movie.delete
-        redirect '/movies'
+        if @movie.user != current_user
+            redirect '/login'
+        else
+            @movie.delete
+            redirect '/movies'
+        end 
     end 
 
 end 
