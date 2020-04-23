@@ -52,7 +52,7 @@ class MovieController < ApplicationController
         if !logged_in?
             flash[:alert] = "Please login to edit movies"
             redirect "/user/login"
-        elsif @movie.user != current_user
+        elsif @movie.user.id != current_user.id
             redirect '/user/login'
         else
             erb :'/movie/edit'
@@ -61,7 +61,7 @@ class MovieController < ApplicationController
 
     patch '/movie/:id' do
         @movie = Movie.find(params[:id])
-        if @movie.user != current_user
+        if @movie.user.id != current_user.id
             redirect '/user/login'
         else @movie.update(
             name: params[:title], 
@@ -106,7 +106,7 @@ class MovieController < ApplicationController
         if !logged_in? 
             flash[:alert] = "Please login to delete movies"
             redirect "/user/login"
-        elsif @movie.user != current_user
+        elsif @movie.user.id != current_user.id
             redirect '/user/login'
         else
             @movie.delete
