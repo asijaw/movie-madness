@@ -61,13 +61,16 @@ class MovieController < ApplicationController
 
     patch '/movie/:id' do
         @movie = Movie.find(params[:id])
-        @movie.update(
+        if @movie.user != current_user
+            redirect '/user/login'
+        else @movie.update(
             name: params[:title], 
             year: params[:year],
             category: params[:category],
             rating: params[:rating]
-        )
-        redirect "/movie/#{@movie.id}"
+            )
+            redirect "/movie/#{@movie.id}"
+        end 
     end
 
     get '/edit' do
@@ -100,7 +103,7 @@ class MovieController < ApplicationController
 
     delete '/movie/:id' do
         @movie = Movie.find(params[:id])
-        if !logged_in?
+        if !logged_in? 
             flash[:alert] = "Please login to delete movies"
             redirect "/user/login"
         elsif @movie.user != current_user
@@ -110,5 +113,16 @@ class MovieController < ApplicationController
             redirect "/user/#{current_user.id}"
         end 
     end 
+
+    #CodeReviewChallenge
+
+    get '/search' do 
+        erb :'/movie/search'
+    end 
+    
+    post "/search" do
+        @movies = Movie.where("name LIKE ?", "%#{params[:title]}%")
+       erb :'/movie/index'
+    end
 
 end 

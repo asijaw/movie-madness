@@ -6,4 +6,7 @@
     Category: <%= m.category %><br>
     Rating: <%= m.rating %><br>
     User: <%= m.user.name %><br></p>
+    <% if m.user == current_user %>
+        <a href='<%="/movies/#{ m.id }/edit"%>'>Edit Movie</a>
+    <% end %>
 <% end %>
